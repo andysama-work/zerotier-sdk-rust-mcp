@@ -4,4 +4,5 @@ Cargo.lock
 *.swo
 .idea/
 .vscode/
+.kiro/
 *.log

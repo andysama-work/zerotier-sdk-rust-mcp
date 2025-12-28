@@ -44,14 +44,40 @@ cargo build --release
     "zerotier": {
       "command": "zerotier-mcp",
       "env": {
-        "ZEROTIER_CENTRAL_TOKEN": "your_token"
+        "ZEROTIER_LOCAL_TOKEN": "your_local_token",
+        "ZEROTIER_CENTRAL_TOKEN": "your_central_token"
       }
     }
   }
 }
 ```
 
-获取 API Token: [my.zerotier.com](https://my.zerotier.com) → Account → API Access Tokens
+### 环境变量说明
+
+| 变量名 | 必填 | 说明 |
+|--------|------|------|
+| `ZEROTIER_LOCAL_TOKEN` | 否 | 本地 ZeroTier 服务 API Token，用于管理本地节点。如不设置，将自动从系统默认位置读取 |
+| `ZEROTIER_CENTRAL_TOKEN` | 否 | 云端 Central API Token，用于管理云端网络 |
+
+### 获取 Token
+
+**本地 Token（authtoken.secret）：**
+
+- Windows: `C:\ProgramData\ZeroTier\One\authtoken.secret`（需管理员权限读取）
+- macOS: `~/Library/Application Support/ZeroTier/authtoken.secret`
+- Linux: `/var/lib/zerotier-one/authtoken.secret`
+
+```powershell
+# Windows (以管理员身份运行 PowerShell)
+Get-Content "C:\ProgramData\ZeroTier\One\authtoken.secret"
+```
+
+```bash
+# Linux/macOS
+sudo cat /var/lib/zerotier-one/authtoken.secret
+```
+
+**云端 Token：** [my.zerotier.com](https://my.zerotier.com) → Account → API Access Tokens
 
 ## MCP 工具列表
 
